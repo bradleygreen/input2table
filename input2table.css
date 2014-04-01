@@ -10,7 +10,7 @@
 	margin: 0 auto;
 }
 
-#dataModel, td, th
+table, td, th
 
 {
  border: 1px solid red;
@@ -20,7 +20,4 @@
  margin-right:auto;
 }
 
-td
-{
-	
-}
+
