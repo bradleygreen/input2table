@@ -47,7 +47,7 @@ function displayTable()
 	var data = document.getElementById("inputArea").value; //get information entered by user
 	var tempLineArray = sameLineSplit(data); //call sameLineSplit function, handing it data and getting back an array
 	//create the header row (will be the same every time)
-	newHTMLTable += "<table><th>Standard</th><th>Version</th><th>Date</th>";
+	newHTMLTable += "<table><tr><th>Standard</th><th>Version</th><th>Date</th></tr>";
 	
 	for(var index = 0; index < tempLineArray.length; index++)
 	{
