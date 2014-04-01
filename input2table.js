@@ -68,7 +68,7 @@ function displayTable()
 function versionsArrays()
 {
 	/* Exception inside the callback function - harvest the text 
-	 * area data & convert data *?
+	 * area data & convert data */
 	try
 	{
 		var data = document.getElementById("inputArea").value;
