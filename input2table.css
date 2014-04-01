@@ -10,20 +10,32 @@
 	margin: 0 auto;
 }
 
-table, th
+table
 {
-	border: 1px solid red;
+	border: 1px solid #00CC00;
 	width: 60%;
 	text-align:center;
 	margin:0 auto;
 }
+th
+{
+	text-align: center;
+}
 td
 {
-	width: 33.3%;
 	text-align: left;
-	border: 1px solid red;
-	
+	border: 1px solid #00CC00;
 }
+
+td:nth-child(odd)
+{
+	width: 40%;
+}
+td:nth-child(even)
+{
+	width: 20%;
+}
+
 body
 {
 	width: 990px;
@@ -47,6 +59,7 @@ body
 h1
 {
 	border-bottom: 20px solid #00CC00;
+	padding-top: 2%;
 }
 #example
 {
