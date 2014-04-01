@@ -105,7 +105,7 @@ function versionsArrays()
 	var versionsArrays=newArray();
 	
 	//copy the values that actually exists
-	for(var index=0); index<dirtyArray.length; index++)
+	for(var index=0; index<dirtyArray.length; index++)
 		if(dirtyArray[index]!="")
 		{
 			versionsArrays.push(dirtyArray[index]);
