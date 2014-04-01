@@ -43,20 +43,21 @@ function csvSplit(lines)
 function displayTable()
 {
 	console.log("the displayTable() function fired");
-	var data = document.getElementById("inputArea").value; //get information enterred by user
+	var newHTMLTable = "";
+	var data = document.getElementById("inputArea").value; //get information entered by user
 	var tempLineArray = sameLineSplit(data); //call sameLineSplit function, handing it data and getting back an array
 	//create the header row (will be the same every time)
-	document.getElementById("jsOutput").innerHTML = document.getElementById("jsOutput").innerHTML + "<table><th>Standard</th><th>Version</th><th>Date</th>";
+	newHTMLTable += "<table><th>Standard</th><th>Version</th><th>Date</th>";
 	
 	for(var index = 0; index < tempLineArray.length; index++)
 	{
 		console.log("the displayTable() function's first for loop fired");
 		var tempCsvArray = csvSplit(tempLineArray[index]);
-		console.log("the displayTable() function's for(for(csvIndex)) fired");
-		document.getElementById("jsOutput").innerHTML = document.getElementById("jsOutput").innerHTML + "<tr><td>" + tempCsvArray[0] + "</td><td>" + tempCsvArray[1] + "</td><td>" + tempCsvArray[2] + "</td></tr>";
+		newHTMLTable += "<tr><td>" + tempCsvArray[0] + "</td><td>" + tempCsvArray[1] + "</td><td>" + tempCsvArray[2] + "</td></tr>";
 		
 		// old function + "You have lived in " + tempCsvArray[0] + ", which gained statehood in " + tempCsvArray[1] + " and has the motto: \"" + tempCsvArray[2] + "\".<br /><br />";
 	}
 	// add /table tag to the end of the table
-	document.getElementById("jsOutput").innerHTML = document.getElementById("jsOutput").innerHTML + "</table>";
+	newHTMLTable += "</table>";
+	document.getElementById("jsOutput").innerHTML = newHTMLTable;
 }
