@@ -10,9 +10,17 @@
 	margin: 0 auto;
 }
 
-#dataModel
+#dataModel, td, th
 
 {
- border: dash, .5px,
+ border: 1px solid red;
+ width: 40%;
+ text-align:center;
+ margin-left: auto;
+ margin-right:auto;
+}
 
+td
+{
+	
 }
