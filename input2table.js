@@ -111,9 +111,10 @@ function versionsArrays()
 			versionsArrays.push(dirtyArray[index]);
 		}
 		else
-		}
+		{
 			numExceptions++;//counts numExceptions
 		}
+}
 		
 	
 // create a Java-style exception if we had errors
