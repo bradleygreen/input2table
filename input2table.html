@@ -2,10 +2,17 @@
 <html>
 	<head>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-		<script src="blank.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="input2table.css" />
+		<script src="input2table.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<p></p>
+		<p>
+			<strong>Enter a web standard, a version number, and when that version was released<br />(separated by commas)</strong><br />
+			<em>ie... HTML, 3.2, January 1997</em>
+			<textarea id="inputArea" rows="8" cols="35"></textarea>
+		</p>
+		<p><div id="displayTable">displayTable()</div></p>
+		<p id="jsExceptions"></p>
+		<p id="jsOutput"></p>
 	</body>
 </html>
