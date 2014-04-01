@@ -72,20 +72,60 @@ function versionsArrays()
 	try
 	{
 		var data = document.getElementById("inputArea").value;
-		var versionNumberArray = convertTextareaToArray(data);
+		var versionNumberArrays = convertTextareaToArray(data);
 	}
 		catch(exception)
 	{
 	// break down the Java exception
 	var errorMessage = exception[0];
 	var versionnumberArray = exception[1];
-	document.getElementById("inputArea").innerHTML = errorMessage
+	document.getElementById("jsExceptions").innerHTML = errorMessage
 	}
 	
 	//print each version, line by line
+	for(var index = 0; index<versionsArrays.length;index++)
+	{
+		document.getElementById("jsOutput").innerHTML=document.getElementById("jsOutput").innerHTML+versionsArray[index]/*references array name*/+ " attended class"+"<br/>";
+	}
 	 
 }
-
+	
 
 /* Exception inside the data from the text area which 
- * converse it to an array */
+ * converts it to an array 
+ *input: (string) data from text area
+ *output: (data to table)*/
+ 
+ function convertTextareaToTable(data)
+{
+	var numExceptions=0
+	
+	//splits by array by enter or \name
+	dirtyArray=data.split("\n");
+	var versionsArrays=newArray();
+	
+	//copy the values that actually exists
+	for(var index=0); index<dirtyArray.length; index++)
+		if(dirtyArray[index]!="")
+		{
+			versionsArrays.push(dirtyArray[index]);
+		}
+		else
+		}
+			numExceptions++;//counts numExceptions
+		}
+		
+	
+// create a Java-style exception if we had errors
+	if(numExceptions>0)
+	{
+			var javaException =  new Array ();
+			javaException.push(numExceptions+" blank names detected"); // first element:error message for the userAgent
+			javaException.push(studentArray); //second element: cleaned student array
+			throw(javaException); //now throw both things to caller
+	}			
+	else
+	{ 
+		return(versionsArrays);
+	}
+}
