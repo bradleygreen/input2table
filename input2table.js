@@ -61,3 +61,31 @@ function displayTable()
 	newHTMLTable += "</table>";
 	document.getElementById("jsOutput").innerHTML = newHTMLTable;
 }
+
+/* exception code for user entering blank data or if the version 
+ * number is ≤ 0, throw exception */
+
+function versionsArrays()
+{
+	/* Exception inside the callback function - harvest the text 
+	 * area data & convert data *?
+	try
+	{
+		var data = document.getElementById("inputArea").value;
+		var versionNumberArray = convertTextareaToArray(data);
+	}
+		catch(exception)
+	{
+	// break down the Java exception
+	var errorMessage = exception[0];
+	var versionnumberArray = exception[1];
+	document.getElementById("inputArea").innerHTML = errorMessage
+	}
+	
+	//print each version, line by line
+	 
+}
+
+
+/* Exception inside the data from the text area which 
+ * converse it to an array */
