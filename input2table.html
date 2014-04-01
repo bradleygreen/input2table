@@ -11,9 +11,9 @@
 				<h1>Enter a web standard, a version number, and when that version was released; separated by commas. <span  id="example"><em>(ie... HTML, 3.2, January 1997)</em></span></h1>
 			</p>
 			<p>
-				<textarea id="inputArea" rows="8" cols="35"></textarea>
+				<textarea id="inputArea" rows="8" cols="35" onfocus="if(this.value == 'Enter text here:') { this.value = ''; }" onblur="if (this.value == '') { this.value='Enter text here:'; }">Enter text here:</textarea>
 			</p>
-			<p><div id="divButton">displayTable()</div></p>
+			<p><div id="divButton">Build my table!</div></p>
 			<p id="jsExceptions"></p>
 			<p id="jsOutput"></p>
 		</div>
