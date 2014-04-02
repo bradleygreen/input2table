@@ -1,5 +1,5 @@
 #divButton{
-	background: linear-gradient(#00CC00, green, #00CC00);
+	background: linear-gradient(rgb(68,218,66), green, rgb(68,218,66));
 	border-radius: 10px;
 	color: black;
 	text-align: center;
@@ -12,7 +12,7 @@
 
 table
 {
-	border: 1px solid #00CC00;
+	border: 1px solid rgb(68,218,66);
 	width: 60%;
 	text-align:center;
 	margin:0 auto;
@@ -24,7 +24,7 @@ th
 td
 {
 	text-align: left;
-	border: 1px solid #00CC00;
+	border: 1px solid rgb(68,218,66);
 }
 
 td:nth-child(odd)
@@ -42,7 +42,7 @@ body
 	margin: 0 auto;
 	font-size: 1.5em;
 	background-image: url(images/background.jpg); 
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
 	background-attachment: fixed;
 	background-size: 100%;
 }
@@ -50,15 +50,15 @@ body
 #text{
 	width:990px;
 	margin: auto;
-	background: rgba(0,0,0,0.6);
+	background: rgba(0,0,0,0.7);
 	padding: 0px 15px 15px 15px;
-	color: #00CC00;
+	color: rgb(68,218,66);
 	font-family: "Lucida Console";
 }
 
 h1
 {
-	border-bottom: 20px solid #00CC00;
+	border-bottom: 20px solid rgb(68,218,66);
 	padding-top: 2%;
 }
 #example
@@ -70,7 +70,23 @@ h1
 {
 	margin: 0 auto;
 	display: block;
-	border: 2px solid #00CC00;
+	border: 2px solid rgb(68,218,66);
 	background-color: black;
-	color: #00CC00;
+	color: rgb(68,218,66);
+}
+
+textarea#inputArea::selection
+{
+	color: black;
+	background-color: rgb(68,218,66);
+}
+textarea#inputArea::-moz-selection
+{
+	color: black;
+	background-color: rgb(68,218,66);
+}
+textarea#inputArea::-webkit-selection
+{
+	color: black;
+	background-color: rgb(68,218,66);
 }

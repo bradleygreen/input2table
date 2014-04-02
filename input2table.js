@@ -24,33 +24,68 @@ function sameLineSplit(data)
 	var dirtyLineArray = data.split("\n");
 	var cleanLineArray =  new Array ();
 	var lineException = "";
-	for(var lineIndex = 0; lineIndex < dirtyLineArray.length; lineIndex++)
+	for(var lineSplitIndex = 0; lineSplitIndex < dirtyLineArray.length; lineSplitIndex++)
 	{
 		console.log("the sameLineSplit(data) function's for loop fired");
-		if(dirtyLineArray[lineIndex] == "")
+		if(dirtyLineArray[lineSplitIndex] == "")
 		{
-			lineException += "Line " + (lineIndex+1) + " was empty, skipping<br />";
+			lineException += "Line " + (lineSplitIndex+1) + " was empty. I'm deleting it, HAHA!<br />";
 		}
 		else
 		{
-			cleanLineArray.push(dirtyLineArray[lineIndex]);
+			cleanLineArray.push(dirtyLineArray[lineSplitIndex]);
 		}
 	}
 	var mixedLineArray = new Array();
 	mixedLineArray.push(lineException);
 	mixedLineArray.push(cleanLineArray);
-	return (mixedLineArray);
+	throw (mixedLineArray);
 }
 
 /* csvSplit()function
  * purpose: split two-dimensional array into usable pieces.
  * parameters: line of array from the sameLineSplit function
  * returns: array of one state, one year, and one motto*/
-function csvSplit(lines)
+function csvSplit(lines, lineCounter)
 {
-	console.log("the csvSplit(lines) function fired");
-	var newCSV_Array = lines.split(",");
-	return (newCSV_Array);
+	var dirtyCsvArray = lines.split(",");
+	var cleanCsvArray = new Array();
+	var csvException = "";
+	
+	if(dirtyCsvArray.length != 3)
+	{
+		csvException = "Not enough items on useful line " + lineCounter + ", skipping whole line, DOH!<br />";
+		throw(csvException);
+	}
+	else
+	{
+		for(var csvSplitIndex = 0; csvSplitIndex < dirtyCsvArray.length; csvSplitIndex++)
+		{
+			if(csvSplitIndex == 0 && dirtyCsvArray[csvSplitIndex] == "") //check to make sure it has data, and not starting with a comma
+			{
+				csvException = "Part " + (csvSplitIndex+1) + " of useful line " + lineCounter + " was empty, skipping whole line, DOH!<br />";
+				throw(csvException);
+			}
+			else if(csvSplitIndex == 1 && isNaN(parseFloat(dirtyCsvArray[csvSplitIndex] ) ) ) //check to make sure it's a number
+			{
+				csvException = "Part " + (csvSplitIndex+1) + " of useful line " + lineCounter + " was not a number, skipping whole line, DOH!<br />";				
+				throw(csvException);;
+			}
+			else if(csvSplitIndex == 2 && isNaN(Date.parse(dirtyCsvArray[csvSplitIndex] ) ) ) //check to make sure it is a date
+			{
+				csvException = "Part " + (csvSplitIndex+1) + " of useful line " + lineCounter + " was not a date, skipping whole line, DOH!<br />";				
+				throw(csvException);
+			}
+			else
+			{
+				cleanCsvArray.push(dirtyCsvArray[csvSplitIndex]);
+			}
+			if(cleanCsvArray.length == 3)
+			{
+				return(cleanCsvArray);
+			}
+		}
+	}
 }
 
 /* displayData function (callback function)
@@ -62,9 +97,10 @@ function displayTable()
 	console.log("the displayTable() function fired");
 	var newHTMLTable = "";
 	var data = document.getElementById("inputArea").value; //get information entered by user
+	var tempLineArray = new Array();
 	try
 	{
-		var tempLineArray = sameLineSplit(data); //call sameLineSplit function, handing it data and getting back an array
+		tempLineArray = sameLineSplit(data); //call sameLineSplit function, handing it data and getting back an array
 	}
 	catch(mixedLineArray)
 	{
@@ -74,98 +110,21 @@ function displayTable()
 	
 	//create the header row (will be the same every time)
 	newHTMLTable += "<table><tr><th>Standard</th><th>Version</th><th>Date</th></tr>";
-	
-	for(var index = 0; index < tempLineArray.length; index++)
+	for(var csvIndex = 0; csvIndex < tempLineArray.length; csvIndex++)
 	{
-		console.log("the displayTable() function's first for loop fired");
-		
+		console.log("the displayTable() function's for loop fired");
+		var tempCsvArray = new Array();
 		try
 		{
-			var tempCsvArray = csvSplit(tempLineArray[index]);
+			tempCsvArray = csvSplit(tempLineArray[csvIndex], (csvIndex + 1));
+			newHTMLTable += "<tr><td>" + tempCsvArray[0] + "</td><td>" + tempCsvArray[1] + "</td><td>" + tempCsvArray[2] + "</td></tr>";
 		}
-		catch(mixedCsvArray)
+		catch(exceptions)
 		{
-			document.getElementById("jsExceptions").innerHTML = document.getElementById("jsExceptions").innerHTML + mixedCsvArray[0];
-			studentArray = mixedCsvArray[1];
+			document.getElementById("jsExceptions").innerHTML = document.getElementById("jsExceptions").innerHTML + exceptions;
 		}
-		
-		newHTMLTable += "<tr><td>" + tempCsvArray[0] + "</td><td>" + tempCsvArray[1] + "</td><td>" + tempCsvArray[2] + "</td></tr>";
-		
-		// old function + "You have lived in " + tempCsvArray[0] + ", which gained statehood in " + tempCsvArray[1] + " and has the motto: \"" + tempCsvArray[2] + "\".<br /><br />";
 	}
 	// add /table tag to the end of the table
 	newHTMLTable += "</table>";
 	document.getElementById("jsOutput").innerHTML = newHTMLTable;
 }
-
-/* 
-// create a Java-style exception if we had errors
-	if(numExceptions>0)
-	{
-			var javaException =  new Array ();
-			javaException.push(numExceptions+" blank names detected"); // first element:error message for the userAgent
-			javaException.push(studentArray); //second element: cleaned student array
-			throw(javaException); //now throw both things to caller
-	}			
-	else
-	{ 
-		return(versionsArrays);
-	}
-
-exception code for user entering blank data or if the version 
- * number is ≤ 0, throw exception */
-/*
-function versionsArrays()
-{
-	// Exception inside the callback function - harvest the text 
-	// area data & convert data 
-	try
-	{
-		var data = document.getElementById("inputArea").value;
-		var versionNumberArrays = convertTextareaToArray(data);
-	}
-		catch(exception)
-	{
-	// break down the Java exception
-	var errorMessage = exception[0];
-	var versionnumberArray = exception[1];
-	document.getElementById("jsExceptions").innerHTML = errorMessage
-	}
-	
-	//print each version, line by line
-	for(var index = 0; index<versionsArrays.length;index++)
-	{
-		document.getElementById("jsOutput").innerHTML=document.getElementById("jsOutput").innerHTML+versionsArray[index]/*references array name+ " attended class"+"<br/>";
-	}
-	 
-}*/
-	
-
-/* Exception inside the data from the text area which 
- * converts it to an array 
- *input: (string) data from text area
- *output: (data to table)
- 
- function convertTextareaToTable(data)
-{
-	var numExceptions=0
-	
-	//splits by array by enter or \name
-	dirtyArray=data.split("\n");
-	var versionsArrays=newArray();
-	
-	//copy the values that actually exists
-	for(var index=0; index<dirtyArray.length; index++)
-		if(dirtyArray[index]!="")
-		{
-			versionsArrays.push(dirtyArray[index]);
-		}
-		else
-		{
-			numExceptions++;//counts numExceptions
-		}
-}
-		
-	
-
-	*/
