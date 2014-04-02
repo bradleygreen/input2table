@@ -4,12 +4,10 @@
  * returns: nothing*/
 window.onload = function()
 {
-	console.log("the window.onload = function() fired");
 	var divButton = document.getElementById('divButton');
 	divButton.style.cursor = 'pointer';
 	divButton.onclick = function() 
 	{
-		console.log("the divButton.onclick = function() fired");
 		displayTable();
 	}
 }
@@ -20,13 +18,11 @@ window.onload = function()
  * returns: (array(array)) two-dimensional array of data*/
 function sameLineSplit(data)
 {
-	console.log("the sameLineSplit(data) function fired");
 	var dirtyLineArray = data.split("\n");
 	var cleanLineArray =  new Array ();
 	var lineException = "";
 	for(var lineSplitIndex = 0; lineSplitIndex < dirtyLineArray.length; lineSplitIndex++)
 	{
-		console.log("the sameLineSplit(data) function's for loop fired");
 		if(dirtyLineArray[lineSplitIndex] == "")
 		{
 			lineException += "Line " + (lineSplitIndex+1) + " was empty. I'm deleting it, HAHA!<br />";
@@ -94,7 +90,6 @@ function csvSplit(lines, lineCounter)
  * returns: nothing*/
 function displayTable()
 {
-	console.log("the displayTable() function fired");
 	var newHTMLTable = "";
 	var data = document.getElementById("inputArea").value; //get information entered by user
 	var tempLineArray = new Array();
@@ -112,7 +107,6 @@ function displayTable()
 	newHTMLTable += "<table><tr><th>Standard</th><th>Version</th><th>Date</th></tr>";
 	for(var csvIndex = 0; csvIndex < tempLineArray.length; csvIndex++)
 	{
-		console.log("the displayTable() function's for loop fired");
 		var tempCsvArray = new Array();
 		try
 		{
