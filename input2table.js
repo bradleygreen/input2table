@@ -62,7 +62,7 @@ function csvSplit(lines, lineCounter)
 				csvException = "Part " + (csvSplitIndex+1) + " of useful line " + lineCounter + " was empty, skipping whole line, DOH!<br />";
 				throw(csvException);
 			}
-			else if(csvSplitIndex == 1 && isNaN(parseFloat(dirtyCsvArray[csvSplitIndex] ) ) ) //check to make sure it's a number
+			else if(csvSplitIndex == 1 && (isNaN(parseFloat(dirtyCsvArray[csvSplitIndex]) ) || dirtyCsvArray[csvSplitIndex] < 0) ) //check to make sure it's a number
 			{
 				csvException = "Part " + (csvSplitIndex+1) + " of useful line " + lineCounter + " was not a number, skipping whole line, DOH!<br />";				
 				throw(csvException);;
